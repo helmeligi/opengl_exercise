@@ -1,7 +1,8 @@
 ![Logo of the project](http://edge.alluremedia.com.au/m/l/2016/03/rubik.jpg)
 
 # opengl_exercise
-> Additional information or tagline
+http://progressed.io/bar/91
+![Progress](http://progressed.io/bar/5) 
 
 This is a sample project I use to practice openGL. It shall be followed by some awesome applications. So this project is just learning openGL tutorials implementation with documenations to be ready for building my next project (RubiksCube Modeling & Solve). I am following these nice tutorials:
 https://learnopengl.com/
