@@ -5,6 +5,6 @@ http://stackoverflow.com/questions/17768008/how-to-build-install-glfw-3-and-use-
 
 Afterwards, you can just run the example in the template project to enure that the environment is up and running, to run the example:
 
-cd TemplateGL
-make
+cd TemplateGL                                                                                                                   
+make                                                                                                                           
 ./main
