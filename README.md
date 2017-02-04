@@ -15,6 +15,7 @@ Afterwards, you can just run the example in the template project to enure that t
                                                                                                                        
 
 ```shell
+git clone https://github.com/helmeligi/opengl_exercise.gi
 cd learnOpenGL/Debug                       
 make
 ./learnOpenGL   
@@ -24,18 +25,9 @@ You can start running the examples, just enter the id of the test to run.
 
 ## Developing
 
-Here's a brief intro about what a developer must do in order to start developing
-the project further:
-
 ```shell
-git clone https://github.com/your/awesome-project.git
-cd awesome-project/
-packagemanager install
+TODO
 ```
-
-And state what happens step-by-step.
-
-
 #
 ## Licensing
 "The code in this project is licensed under MIT license."
