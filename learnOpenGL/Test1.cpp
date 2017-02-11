@@ -27,7 +27,7 @@ using namespace std;
  * GLFW --> openGL Framework */
 #include <GLFW/glfw3.h>
 
-GLFWwindow* window;
+static GLFWwindow* window;
 
 /**
  * Init sequence:
