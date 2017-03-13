@@ -22,12 +22,23 @@ make
 ```
 
 You can start running the examples, just enter the id of the test to run.
+7
+## Features ![Progress](http://progressed.io/bar/7)
+#Getting Started ![Progress](http://progressed.io/bar/38) 
+Hello Window ![Progress](http://progressed.io/bar/100) 
+Hello Triangle ![Progress](http://progressed.io/bar/100) 
+Shaders ![Progress](http://progressed.io/bar/100) 
+Textures ![Progress](http://progressed.io/bar/0) 
+Transformations ![Progress](http://progressed.io/bar/0) 
+Coordinate Systems ![Progress](http://progressed.io/bar/0) 
+Camera ![Progress](http://progressed.io/bar/0) 
+Review ![Progress](http://progressed.io/bar/0) 
+#Lighting
+#Model Loading
+#Advanced OpenGL
+#Advanced Lighting
+#PBR
 
-## Developing
 
-```shell
-TODO
-```
-#
 ## Licensing
 "The code in this project is licensed under MIT license."
