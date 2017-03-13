@@ -23,21 +23,21 @@ make
 
 You can start running the examples, just enter the id of the test to run.
 7
-## Features ![Progress](http://progressed.io/bar/7)
-#Getting Started ![Progress](http://progressed.io/bar/38) 
-Hello Window ![Progress](http://progressed.io/bar/100) 
-Hello Triangle ![Progress](http://progressed.io/bar/100) 
-Shaders ![Progress](http://progressed.io/bar/100) 
-Textures ![Progress](http://progressed.io/bar/0) 
+## Features ![Progress](http://progressed.io/bar/7) <br />
+#Getting Started ![Progress](http://progressed.io/bar/38)  <br />
+Hello Window ![Progress](http://progressed.io/bar/100) <br /> 
+Hello Triangle ![Progress](http://progressed.io/bar/100) <br />
+Shaders ![Progress](http://progressed.io/bar/100) <br />
+Textures ![Progress](http://progressed.io/bar/0) <br />
 Transformations ![Progress](http://progressed.io/bar/0) 
-Coordinate Systems ![Progress](http://progressed.io/bar/0) 
-Camera ![Progress](http://progressed.io/bar/0) 
-Review ![Progress](http://progressed.io/bar/0) 
-#Lighting
-#Model Loading
-#Advanced OpenGL
-#Advanced Lighting
-#PBR
+Coordinate Systems ![Progress](http://progressed.io/bar/0) <br />
+Camera ![Progress](http://progressed.io/bar/0) <br />
+Review ![Progress](http://progressed.io/bar/0) <br />
+#Lighting ![Progress](http://progressed.io/bar/0) <br />
+#Model Loading ![Progress](http://progressed.io/bar/0) <br />
+#Advanced OpenGL ![Progress](http://progressed.io/bar/0) <br />
+#Advanced Lighting ![Progress](http://progressed.io/bar/0) <br />
+#PBR ![Progress](http://progressed.io/bar/0) <br />
 
 
 ## Licensing
