@@ -1,5 +1,6 @@
 #include <iostream>
 
+
 // GLEW
 #define GLEW_STATIC
 #include <GL/glew.h>
@@ -9,7 +10,7 @@
 
 
 // Function prototypes
-void key_callback2(GLFWwindow* window, int key, int scancode, int action, int mode);
+static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
 
 // Window dimensions
 static const GLuint WIDTH = 800, HEIGHT = 600;
@@ -17,19 +18,23 @@ static const GLuint WIDTH = 800, HEIGHT = 600;
 // Shaders
 static const GLchar* vertexShaderSource = "#version 330 core\n"
     "layout (location = 0) in vec3 position;\n"
+    "layout (location = 1) in vec3 color;\n"
+    "out vec3 ourColor;\n"
     "void main()\n"
     "{\n"
-    "gl_Position = vec4(position.x, position.y, position.z, 1.0);\n"
+    "gl_Position = vec4(position, 1.0);\n"
+    "ourColor = color;\n"
     "}\0";
 static const GLchar* fragmentShaderSource = "#version 330 core\n"
+    "in vec3 ourColor;\n"
     "out vec4 color;\n"
     "void main()\n"
     "{\n"
-    "color = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+    "color = vec4(ourColor, 1.0f);\n"
     "}\n\0";
 
 // The MAIN function, from here we start the application and run the game loop
-int test2_draw_triangle()
+int test4_draw_colored_triangle()
 {
     // Init GLFW
     glfwInit();
@@ -44,7 +49,7 @@ int test2_draw_triangle()
     glfwMakeContextCurrent(window);
 
     // Set the required callback functions
-    glfwSetKeyCallback(window, key_callback2);
+    glfwSetKeyCallback(window, key_callback);
 
     // Set this to true so GLEW knows to use a modern approach to retrieving function pointers and extensions
     glewExperimental = GL_TRUE;
@@ -52,9 +57,7 @@ int test2_draw_triangle()
     glewInit();
 
     // Define the viewport dimensions
-    int width, height;
-    glfwGetFramebufferSize(window, &width, &height);
-    glViewport(0, 0, width, height);
+    glViewport(0, 0, WIDTH, HEIGHT);
 
 
     // Build and compile our shader program
@@ -93,20 +96,17 @@ int test2_draw_triangle()
         glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
         std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
     }
-
-    //Delete the shader objects once we've linked them into the program object; we no longer need them anymore.
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 
 
     // Set up vertex data (and buffer(s)) and attribute pointers
     GLfloat vertices[] = {
-        -0.5f, -0.5f, 0.0f, // Left
-         0.5f, -0.5f, 0.0f, // Right
-         0.0f,  0.5f, 0.0f  // Top
+        // Positions         // Colors
+         0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,  // Bottom Right
+        -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,  // Bottom Left
+         0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f   // Top
     };
-
-    //a VAO that stores our vertex attribute configuration and which VBO to use
     GLuint VBO, VAO;
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
@@ -116,15 +116,15 @@ int test2_draw_triangle()
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-    /*
-     * Par1: Which vertex attribute to configure,remember the vertex shader sets the location only for position # 0
-     * */
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
+    // Position attribute
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)0);
     glEnableVertexAttribArray(0);
+    // Color attribute
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+    glEnableVertexAttribArray(1);
 
-    glBindBuffer(GL_ARRAY_BUFFER, 0); // Note that this is allowed, the call to glVertexAttribPointer registered VBO as the currently bound vertex buffer object so afterwards we can safely unbind
+    glBindVertexArray(0); // Unbind VAO
 
-    glBindVertexArray(0); // Unbind VAO (it's always a good thing to unbind any buffer/array to prevent strange bugs)
 
     // Game loop
     while (!glfwWindowShouldClose(window))
@@ -137,10 +137,8 @@ int test2_draw_triangle()
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        // Draw our first triangle
+        // Draw the triangle
         glUseProgram(shaderProgram);
-
-        //data loaded from VAO
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 3);
         glBindVertexArray(0);
@@ -157,7 +155,7 @@ int test2_draw_triangle()
 }
 
 // Is called whenever a key is pressed/released via GLFW
-void key_callback2(GLFWwindow* window, int key, int scancode, int action, int mode)
+static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
         glfwSetWindowShouldClose(window, GL_TRUE);
